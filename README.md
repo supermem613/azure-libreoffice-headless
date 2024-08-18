@@ -22,5 +22,12 @@ $ docker run -it supermem613/azure-libreoffice-headless
 ```
 $ ./soffice.bin --headless --convert-to pdf <OFFICEFILE>
 ```
-
 Enjoy!
+
+## Caveats
+
+Notice that during the building of the LibreOffice image, we are taking a very heavy handed step of copying all local libs into the package. That bloats the resulting package file by about 2x. This is needed as there are packages that are not present in Azure by default, so we wouldn't be able to run LibreOffice at all. But a better approach would be to narrow down to a minimal set needed.
+
+## References
+
+1. https://wiki.documentfoundation.org/Development/Configuration_options details all the build switches that LibreOffice supports.
